@@ -1,11 +1,11 @@
 {
   "root": true,
-  "project": {
-    "name": "ShareSmile"
-  },
   "api": {
     "projectId": "d13gsv3n",
     "dataset": "production"
+  },
+  "project": {
+    "name": "ShareSmile"
   },
   "plugins": [
     "@sanity/base",
