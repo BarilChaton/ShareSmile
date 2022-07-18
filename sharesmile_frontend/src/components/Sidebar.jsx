@@ -31,12 +31,12 @@ const Sidebar = ({ user, closeToggle }) => {
             to="/"
             onClick={handleCloseSidebar}
           >
-            <div className='flex justify-center items-center mb-4'>
-              <div className='p-1 my-2 bg-gray-500 rounded-[75%]'>
+            <div className='flex justify-center items-center mb-4 mr-6'>
+              <div className='p-1 my-2 bg-gray-500 rounded-[75%] ml-4'>
                 <img src={Logo} width="60px" alt="Logo" />
               </div>
               <div className='text-[1.5em] ml-[5px] font-[Fredoka_One, cursive]'>
-                <h1><span className='text-white'>Share</span><span className='text-gray-400'>Smile</span></h1>
+                <h1><span className='text-white bg-gray-500 p-1 rounded-l-md'>Share</span><span className='text-gray-500 bg-white p-1 rounded-r-md'>Smile</span></h1>
               </div>
             </div>
           </Link>

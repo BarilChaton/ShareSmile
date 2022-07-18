@@ -68,7 +68,7 @@ const Login = () => {
               <img src={Logo} width="60px" alt="Logo" />
             </div>
             <div className='text-[2em] ml-[5px] font-[Fredoka_One, cursive]'>
-              <h1><span className='text-white'>Share</span><span className='text-gray-400'>Smile</span></h1>
+              <h1><span className='text-white bg-gray-500 p-1 rounded-l-md'>Share</span><span className='text-gray-500 bg-white p-1 rounded-r-md'>Smile</span></h1>
             </div>
           </div>
           <div className='flex justify-center mt-[8em] scale-150'>
