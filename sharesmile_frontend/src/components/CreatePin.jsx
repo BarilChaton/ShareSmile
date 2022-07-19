@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { RiImageAddLine, RiArrowRightUpLine } from 'react-icons/ri'
 
-const CreatePin = () => {
+const CreatePin = ({ user }) => {
   return (
     <div>CreatePin</div>
   )
