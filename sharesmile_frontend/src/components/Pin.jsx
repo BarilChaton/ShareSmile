@@ -12,21 +12,23 @@ const Pin = ({ pin }) => {
     const [savingPost, setSavingPost] = useState(false);
     const navigate = useNavigate();
     const { postedBy, image, _id, destination } = pin;
+    console.log(_id)
 
     const user = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
-    let alreadySaved = pin?.save?.filter((item) => item?.postedBy?._id === user?.googleId);
+    let alreadySaved = pin?.save?.filter((item) => item?.postedBy?._id === user?.sub);
+    console.log(postedBy?._id)
 
     alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
-    const deletePin = (id) => {
+    const deletePin = (_id) => {
         client
-            .delete(id)
+            .delete(_id)
             .then(() => {
                 window.location.reload();
             });
     };
-  
+
     const savePin = (id) => {
       if (alreadySaved?.length === 0) {
         setSavingPost(true);
@@ -36,10 +38,10 @@ const Pin = ({ pin }) => {
           .setIfMissing({ save: [] })
           .insert('after', 'save[-1]', [{
             _key: uuidv4(),
-            userId: user?.googleId,
+            userId: user?.sub,
             postedBy: {
               _type: 'postedBy',
-              _ref: user?.googleId,
+              _ref: user?.sub,
             },
           }])
           .commit()
@@ -108,7 +110,7 @@ const Pin = ({ pin }) => {
                             </a>
                         ) : undefined}
                         {
-                            postedBy?._id === user?.googleId && (
+                            postedBy?._id === user?.sub && ( 
                             <button
                             type='button'
                             onClick={(e) => {
