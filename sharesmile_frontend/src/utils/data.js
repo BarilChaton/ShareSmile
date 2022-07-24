@@ -52,3 +52,43 @@ export const feedQuery = `*[_type == 'pin'] | order(_createAt desc) {
         },
     },
 }`;
+
+
+export const categories = [
+    {
+        name: 'Animals',
+        image: 'https://static.posters.cz/image/1300/fototapet/cute-kitten-i77094.jpg',
+    },
+    {
+        name: 'Wallpapers',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt73Mol8oo5JZeHXpqPxnH-cddgkyN8Y467RgK2En9cRMwQxdHcqI5XjVCdTdNcsZNXAo&usqp=CAU',
+    },
+    {
+        name: 'Art',
+        image: 'https://yt3.ggpht.com/ytc/AKedOLSRSl8xsTNuQU_f6sg3bHI19gZYUSqLu2I78S90MQ=s900-c-k-c0x00ffffff-no-rj',
+    },
+    {
+        name: 'Places',
+        image: 'https://www.cinqueterre.eu.com/images/stories/web/pisa/torre-di-pisa-350.jpg',
+    },
+    {
+        name: 'Food',
+        image: 'https://images.deliveryhero.io/image/fd-op/LH/xbrj-hero.jpg',
+    },
+    {
+        name: 'Gaming',
+        image: 'https://storage.googleapis.com/pod_public/1300/121065.jpg',
+    },
+    {
+        name: 'Memes',
+        image: 'https://cdn.pocket-lint.com/r/s/1201x/assets/images/152027-apps-news-these-memes-do-not-exist-and-are-made-by-ai-image1-eh5wdqtisy.jpg',
+    },
+    {
+        name: 'Coding',
+        image: 'https://repository-images.githubusercontent.com/310526431/f3510580-2712-11eb-9cf2-793ab4e1bbf7',
+    },
+    {
+        name: 'Other',
+        image: 'https://i1.sndcdn.com/artworks-000163652249-zpswew-t500x500.jpg',
+    },
+];
