@@ -17,7 +17,7 @@ const Pin = ({ pin }) => {
     const user = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
     let alreadySaved = pin?.save?.filter((item) => item?.postedBy?._id === user?.sub);
-    console.log(postedBy?._id)
+    //console.log(postedBy?._id)
 
     alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
@@ -106,7 +106,7 @@ const Pin = ({ pin }) => {
                             >
                                 {' '}
                                 <BsFillArrowUpRightCircleFill className='text-white' />
-                                {destination.length > 20 ? destination.slice(8, 17) : destination.slice(8)}
+                                {destination.length > 15 ? `${destination.slice(0, 15)}...` : destination.slice(8)}
                             </a>
                         ) : undefined}
                         {
