@@ -1,24 +1,15 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom';
 import { RiHomeSmileFill } from 'react-icons/ri';
-import { BsArrowRightCircleFill } from 'react-icons/bs';
 
 import Logo from '../Assets/Logo/Logo1.png';
+
+import { categories } from '../utils/data';
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-md text-gray-500 hover:text-white transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle = 'flex items-center px-5 gap-3 text-md text-white font-extrabold border-r-2 border-white transition-all duration-200 ease-in-out capitalize';
 
-const categories = [
-  {name: 'Animals'},
-  {name: 'Wallpapers'},
-  {name: 'Art'},
-  {name: 'Places'},
-  {name: 'Food'},
-  {name: 'Gaming'},
-  {name: 'Memes'},
-  {name: 'Coding'},
-  {name: 'Other'},
-]
+//Categories here
 
 const Sidebar = ({ user, closeToggle }) => {
   const handleCloseSidebar = () => {
@@ -57,6 +48,7 @@ const Sidebar = ({ user, closeToggle }) => {
                 onClick={handleCloseSidebar}
                 key={category.name}
               >
+                <img src={category.image} className='w-10 h-10 rounded-full shadow-sm' alt="category" />
                 {category.name}
               </NavLink>
             ))}
