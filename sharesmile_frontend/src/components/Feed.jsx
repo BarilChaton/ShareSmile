@@ -15,26 +15,24 @@ const Feed = () => {
     if(categoryId) {
       setLoading(true);
       const query = searchQuery(categoryId);
-      client.fetch(query)
-        .then((data) => {
+      client.fetch(query).then((data) => {
           setPins(data);
           setLoading(false);
-        })
+        });
     } else {
-      setLoading(true)
-      client.fetch(feedQuery)
-        .then ((data) => {
+      setLoading(true);
+
+      client.fetch(feedQuery).then((data) => {
           setPins(data);
           setLoading(false);
         });
     }
-  }, [categoryId])
+  }, [categoryId]);
 
   const ideaName = categoryId || 'new';
-  if(loading) {
-    return (
-      <Spinner message={`We are adding ${ideaName} ideas to your feed!`} />
-    );
+  if (loading) { 
+    return ( 
+      <Spinner message={`We are adding ${ideaName} ideas to your feed!`} />);
   }
   return (
     <div>
@@ -43,6 +41,13 @@ const Feed = () => {
       )}
     </div>
   );
-};
+}
 
-export default Feed
+
+
+// if(!pins?.length) {
+//   return (
+//   <h2>No pins available!</h2>
+// )} else
+
+export default Feed;

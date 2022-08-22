@@ -12,46 +12,46 @@ const Pin = ({ pin }) => {
     const [savingPost, setSavingPost] = useState(false);
     const navigate = useNavigate();
     const { postedBy, image, _id, destination } = pin;
-    console.log(_id)
 
     const user = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+
+    const deletePin = (id) => {
+        client
+            .delete(id)
+            .then(() => {
+                window.location.reload();
+            });
+    };
 
     let alreadySaved = pin?.save?.filter((item) => item?.postedBy?._id === user?.sub);
     //console.log(postedBy?._id)
 
     alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
-    const deletePin = (_id) => {
-        client
-            .delete(_id)
-            .then(() => {
-                window.location.reload();
-            });
-    };
-
     const savePin = (id) => {
-      if (alreadySaved?.length === 0) {
-        setSavingPost(true);
-  
-        client
-          .patch(id)
-          .setIfMissing({ save: [] })
-          .insert('after', 'save[-1]', [{
-            _key: uuidv4(),
-            userId: user?.sub,
-            postedBy: {
-              _type: 'postedBy',
-              _ref: user?.sub,
-            },
-          }])
-          .commit()
-          .then(() => {
-            window.location.reload();
-            setSavingPost(false);
-          });
-      }
+        if (alreadySaved?.length === 0) {
+          setSavingPost(true);
+    
+          client
+            .patch(id)
+            .setIfMissing({ save: [] })
+            .insert('after', 'save[-1]', [{
+              _key: uuidv4(),
+              userId: user?.sub,
+              postedBy: {
+                _type: 'postedBy',
+                _ref: user?.sub,
+              },
+            }])
+            .commit()
+            .then(() => {
+              window.location.reload();
+              setSavingPost(false);
+            });
+        }
     };
 
+    
   
     return (
     <div className='m-2 border-4 border-gray-400 rounded-xl'>
