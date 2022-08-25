@@ -7,12 +7,13 @@ import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
 
 const Feed = () => {
-  const [pins, setPins] = useState(null);
+  const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
   const { categoryId } = useParams();
 
   useEffect(() => {
     if(categoryId) {
+      setLoading(true)
       const query = searchQuery(categoryId);
       client.fetch(query)
         .then((data) => {
