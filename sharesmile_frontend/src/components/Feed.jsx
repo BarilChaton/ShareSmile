@@ -36,6 +36,14 @@ const Feed = () => {
     return ( 
       <Spinner message={`We are adding ${ideaName} ideas to your feed!`} />);
   }
+
+  if (!pins?.length)
+    return (
+      <div className='flex justify-center items-center'>
+        <h2 className='text-white text-3xl text-center mt-80'>No pins here yet, Care to add some perhaps?</h2>
+      </div>
+    )
+
   return (
     <div>
       {pins && (
