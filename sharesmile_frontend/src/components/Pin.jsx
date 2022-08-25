@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md'
 import { RiDeleteBin2Fill } from 'react-icons/ri'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'   
+import { fetchUser } from '../utils/fetchUser'
 
 import { client, urlFor } from '../client'
 
@@ -11,9 +12,9 @@ const Pin = ({ pin }) => {
     const [postHovered, setPostHovered] = useState(false);
     const [savingPost, setSavingPost] = useState(false);
     const navigate = useNavigate();
-    const { postedBy, image, _id, destination } = pin;
+    const { postedBy, image, _id, destination, save } = pin;
 
-    const user = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+    const userInfo = fetchUser();
 
     const deletePin = (id) => {
         client
@@ -23,13 +24,13 @@ const Pin = ({ pin }) => {
             });
     };
 
-    let alreadySaved = pin?.save?.filter((item) => item?.postedBy?._id === user?.sub);
+    const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === userInfo?.sub))?.length;
     //console.log(postedBy?._id)
 
-    alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
+    // alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
     const savePin = (id) => {
-        if (alreadySaved?.length === 0) {
+        if (!alreadySaved) {
           setSavingPost(true);
     
           client
@@ -37,10 +38,10 @@ const Pin = ({ pin }) => {
             .setIfMissing({ save: [] })
             .insert('after', 'save[-1]', [{
               _key: uuidv4(),
-              userId: user?.sub,
+              userId: userInfo?.sub,
               postedBy: {
                 _type: 'postedBy',
-                _ref: user?.sub,
+                _ref: userInfo?.sub,
               },
             }])
             .commit()
@@ -79,9 +80,9 @@ const Pin = ({ pin }) => {
                                 <MdDownloadForOffline />
                             </a>
                         </div>
-                        {alreadySaved !== 0 ? (
+                        {alreadySaved ? (
                             <button type='button' className='bg-white hover:scale-110 duration-100 text-gray-600 font-bold px-5 py-1 text-base rounded-3xl outline-none'>
-                               {pin?.save?.length} Saved
+                               {save?.length} Saved
                             </button>
                         ) : (
                             <button
@@ -92,7 +93,7 @@ const Pin = ({ pin }) => {
                                 type='button' 
                                 className='bg-gray-600 hover:scale-110 duration-100 text-white font-bold px-5 py-1 text-base rounded-3xl outline-none'
                                 >
-                                {pin?.save?.length}   {savingPost ? 'Saving' : 'Save'}
+                                {save?.length}   {savingPost ? 'Saving' : 'Save'}
                             </button>
                         )}
                     </div>
@@ -110,7 +111,7 @@ const Pin = ({ pin }) => {
                             </a>
                         ) : undefined}
                         {
-                            postedBy?._id === user?.sub && ( 
+                            postedBy?._id === userInfo?.sub && ( 
                             <button
                             type='button'
                             onClick={(e) => {
