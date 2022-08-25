@@ -43,22 +43,22 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
       url
     }
   },
-    _id,
-    destination,
-    postedBy->{
       _id,
-      userName,
-      image
-    },
-    save[]{
-      _key,
+      destination,
       postedBy->{
         _id,
         userName,
         image
       },
-    },
-  }`;
+      save[]{
+        _key,
+        postedBy->{
+          _id,
+          userName,
+          image
+        },
+      },
+    } `;
 
 export const pinDetailQuery = (pinId) => {
   const query = `*[_type == "pin" && _id == '${pinId}']{
