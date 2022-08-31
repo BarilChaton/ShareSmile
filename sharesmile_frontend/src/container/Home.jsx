@@ -35,14 +35,14 @@ const Home = () => {
         <div className='hidden md:flex h-screen flex-initial'>
           <Sidebar user={user && user} />
         </div>
-        <div className='flex md:hidden flex-row'>
-          <div className='p-2 w-full flex flex-row justify-between items-center bg-gray-800 shadow-md'>
+        <div className='relative md:hidden flex-row'>
+          <div className='p-2 grid grid-cols-3 w-screen items-center bg-gray-800 shadow-md'>
             <Link to="/">
-              <img src={Logo} alt="Logo" className='w-10 p-0.5 bg-gray-500 rounded-[75%]' />
+              <img src={Logo} alt="Logo" className='w-9 p-0.5 bg-gray-500 rounded-[75%]' />
             </Link>
-            <HiMenu fontSize={40} className='cursor-pointer text-white mr-[9em]' onClick={() => setToggleSidebar(true)}/>
+            <HiMenu fontSize={40} className='absolute left-11 cursor-pointer text-white mr-[9em]' onClick={() => setToggleSidebar(true)}/>
             <Link to={`user-profile/${user?._id}`}>
-              <img src={user?.image} alt="user-pic" className='w-9 h-9 rounded-full p-0.5 bg-gray-500' />
+              <img src={user?.image} alt="user-pic" className='absolute right-0 top-[0.5em] mr-2 w-9 md:h-9 rounded-full p-0.5 bg-gray-500' />
             </Link>
             </div>
         {toggleSidebar && (
