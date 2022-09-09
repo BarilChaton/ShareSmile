@@ -143,7 +143,7 @@ const CreatePin = ({ user }) => {
                 type='text'
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                placeholder='Add a destination link'
+                placeholder='Add a destination link or "Null" if there is none.'
                 className='outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2 placeholder-gray-800'
               />
               <div className='flex flex-col'>
